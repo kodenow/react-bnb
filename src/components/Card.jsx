@@ -20,19 +20,36 @@ Notes:
   this data into the component.
 */
 
-export default function Card({ img, rating, reviews, location, title, price }) {
+export default function Card({
+  openSpots,
+  img,
+  rating,
+  reviews,
+  location,
+  title,
+  price,
+}) {
+  let badgeText;
+  if (openSpots === 0) {
+    badgeText = "SOLD OUT";
+  } else if (location === "Online") {
+    badgeText = "ONLINE";
+  }
+
   //====combining es6 backtick template string with outer jsx curly brace in img element
   return (
     <div className="card">
-      <img src={`/src/assets/${img}`} alt="" className="card--image" />
+      {badgeText && <div className="card--badge">{badgeText}</div>}
+
+      <img src={`/public/images/${img}`} alt="" className="card--image" />
       <div className="card--stats">
         <img src={star} alt="" className="card--star" />
         <span className="gray">{rating}</span>
         <span className="gray">({reviews}) • </span>
         <span className="gray">{location}</span>
       </div>
-      <p>{title}</p>
-      <p>
+      <p className="card--title">{title}</p>
+      <p className="card--price">
         <span className="bold">From ${price}</span>/person
       </p>
     </div>

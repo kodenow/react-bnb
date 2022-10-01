@@ -9,10 +9,11 @@ import CardData from "./CardData";
 function App() {
   const [count, setCount] = useState(0);
 
-  const x = CardData.map((y) => {
+  const cards = CardData.map((y) => {
     return (
       <Card
-        img="katie-zaferes.png"
+        openSpots={y.openSpots}
+        img={y.coverImg}
         rating={y.stats.rating}
         reviews={y.stats.reviewCount}
         location={y.location}
@@ -26,7 +27,7 @@ function App() {
     <div className="container">
       <Navbar />
       <Hero />
-      {x}
+      <div className="cards-list">{cards}</div>
     </div>
   );
 }
