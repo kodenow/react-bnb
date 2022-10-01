@@ -20,7 +20,7 @@ Notes:
   this data into the component.
 */
 
-export default function Card({ img, rating, reviews, country, title, price }) {
+export default function Card({ img, rating, reviews, location, title, price }) {
   //====combining es6 backtick template string with outer jsx curly brace in img element
   return (
     <div className="card">
@@ -29,7 +29,7 @@ export default function Card({ img, rating, reviews, country, title, price }) {
         <img src={star} alt="" className="card--star" />
         <span className="gray">{rating}</span>
         <span className="gray">({reviews}) • </span>
-        <span className="gray">{country}</span>
+        <span className="gray">{location}</span>
       </div>
       <p>{title}</p>
       <p>
