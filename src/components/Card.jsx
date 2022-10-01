@@ -20,37 +20,44 @@ Notes:
   this data into the component.
 */
 
-export default function Card({
-  openSpots,
-  img,
-  rating,
-  reviews,
-  location,
-  title,
-  price,
-}) {
+//we can use destructuring here like below, but since there are too many props we just pass the props
+// export default function Card({
+//     openSpots,
+//     img,
+//     rating,
+//     reviews,
+//     location,
+//     title,
+//     price,
+//   })
+
+export default function Card(props) {
   let badgeText;
-  if (openSpots === 0) {
+  console.log(props);
+  if (props.item.openSpots === 0) {
     badgeText = "SOLD OUT";
-  } else if (location === "Online") {
+  } else if (props.item.location === "Online") {
     badgeText = "ONLINE";
   }
-
   //====combining es6 backtick template string with outer jsx curly brace in img element
   return (
     <div className="card">
       {badgeText && <div className="card--badge">{badgeText}</div>}
 
-      <img src={`/public/images/${img}`} alt="" className="card--image" />
+      <img
+        src={`/public/images/${props.item.coverImg}`}
+        alt=""
+        className="card--image"
+      />
       <div className="card--stats">
         <img src={star} alt="" className="card--star" />
-        <span className="gray">{rating}</span>
-        <span className="gray">({reviews}) • </span>
-        <span className="gray">{location}</span>
+        <span className="gray">{props.item.stats.rating}</span>
+        <span className="gray">({props.item.stats.reviewCount}) • </span>
+        <span className="gray">{props.item.location}</span>
       </div>
-      <p className="card--title">{title}</p>
+      <p className="card--title">{props.item.title}</p>
       <p className="card--price">
-        <span className="bold">From ${price}</span>/person
+        <span className="bold">From ${props.item.price}</span>/person
       </p>
     </div>
   );

@@ -9,20 +9,9 @@ import CardData from "./CardData";
 function App() {
   const [count, setCount] = useState(0);
 
-  const cards = CardData.map((y) => {
-    return (
-      <Card
-        openSpots={y.openSpots}
-        img={y.coverImg}
-        rating={y.stats.rating}
-        reviews={y.stats.reviewCount}
-        location={y.location}
-        title={y.title}
-        price={y.price}
-      />
-    );
+  const cards = CardData.map((item) => {
+    return <Card key={item.id} item={item} />;
   });
-
   return (
     <div className="container">
       <Navbar />
